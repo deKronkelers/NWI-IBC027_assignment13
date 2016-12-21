@@ -90,6 +90,58 @@ We know the total number of nodes to be $n$. $\sum_{1 \leq k \leq c} (n/2 + 1) \
 	\end{enumerate}
 
 	\item %c
+	You can find an optimal solution in $O(n)$.
+
+	For every month beginning at month 1 you calculate the cost of staying there, and the cost of switching to the other location. You then return the minimum you found. This is done recursively.
+
+	There is a lot of redundancy in the ensuing tree. Therefore you save every result you calculated and use them when they are needed again. This is the top down dynamic programming approach which dramatically cuts down on the time complexity.
+
+	\paragraph{Correctness}
+	The correctness proof is trivial: We exhaustively test the solution space and pick the best answer at each step. Because we consider all possibilities for each step and pick the optimal one the plan we get is also optimal.
+
+	\paragraph{Time Complexity}
+	We get a structure like this
+
+	\begin{tikzpicture}[
+		every node/.style={circle, draw, minimum width=2em}
+		,baseline=(A.north)
+	]
+		\node (A) {$S_1$}
+			child {
+				node (B) {$S_2$}
+				child {
+					node (C) {$S_{\dots}$}
+					child {
+						node (D) {$S_n$}
+					}
+				}
+			}
+		;
+		\node[right=of A] (H) {$N_1$}
+			child {
+				node (E) {$N_2$}
+				child {
+					node (F) {$N_{\dots}$}
+					child {
+						node (G) {$N_n$}
+					}
+				}
+			}
+		;
+
+		\draw (A) edge (E);
+		\draw (B) edge (F);
+		\draw (C) edge (G);
+		\draw (E) edge (C);
+		\draw (F) edge (D);
+		\draw (H) edge (B);
+	\end{tikzpicture}
+
+	where $N_i$ indicates that during month $i$ you should use the office in New York and $S_i$ indicates the same for San Francisco.
+
+	The height of the tree is $n$ and therefore exploring the whole search space requires visiting $2n$ nodes and performing $O(1)$ work at each which totals $O(n)$.
+
+	(This assumes that cache lookup is $O(1)$, using Hash Tables for example.)
 \end{enumerate}
 
 \end{document}
