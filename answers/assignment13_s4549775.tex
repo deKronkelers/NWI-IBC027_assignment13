@@ -42,6 +42,11 @@ This was done in collaboration with Constantin Blach (s4329872).
 \section{} %2
 
 \section{} %3
+The claim holds. An $n$ node simple graph $G$ is connected if every node has a degree of at least $n/2$.
+
+Suppose we could split the graph into separate components that are not connected to each other. Each component has to contain at least $n/2 + 1$ nodes because we cannot connect to nodes outside of the component because that would break the component and each node has a degree of at least $n/2$. There are no self loops so the components needs at least $n/2$ other nodes any node in this component can connect to, which totals at least $n/2 + 1$.
+
+We know the total number of nodes to be $n$. $\sum_{1 \leq k \leq c} (n/2 + 1) \leq n$, where $c$ is the number of components in the graph only holds for $c = 1$ so we know that there is only one component in the graph which means it is connected.
 
 \section{} %4
 \begin{enumerate}[(a)]
