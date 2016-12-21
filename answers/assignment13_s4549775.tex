@@ -69,6 +69,26 @@ We know the total number of nodes to be $n$. $\sum_{1 \leq k \leq c} (n/2 + 1) \
 	We have shown that the algorithm given does not produce plans with minimum cost.
 
 	\item %b
+	$n = 4, M = 0$ and operating costs\\
+	\begin{tabular}{|c||c|c|c|c|}
+		\hline
+		& Month 1 & Month 2 & Month 3 & Month 4\\
+		\hline
+		NY & 1 & 0 & 1 & 0\\
+		\hline
+		SF & 0 & 1 & 0 & 1\\
+		\hline
+	\end{tabular}
+
+	An optimal solution is $[SF, NY, SF, NY]$ which contains 3 moves.
+
+	Every optimal plan must move at least 3 times because
+	\begin{enumerate}
+		\item there are 4 months,
+		\item the moving cost is $M = 0$,
+		\item and every month the cost is lower at another location compared to the previous month.
+	\end{enumerate}
+
 	\item %c
 \end{enumerate}
 
